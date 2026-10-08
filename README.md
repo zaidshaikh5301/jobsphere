@@ -1,189 +1,121 @@
-# JobSphere
+# 💼 JobSphere
 
-A modern full-stack job portal built with React, Vite, Node.js, Express, MongoDB, and JWT authentication. JobSphere connects candidates and recruiters through job discovery, applications, recruiter job management, and dashboard workflows.
+A full-stack job portal built with React, Vite, Node.js, Express and MongoDB. Candidates can discover and apply for jobs, while recruiters can post jobs and manage applications from a dashboard.
 
-## Overview
+![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)
+![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)
+![Tailwind](https://img.shields.io/badge/Tailwind_CSS-06B6D4?logo=tailwindcss&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?logo=nodedotjs&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=white)
 
-JobSphere is designed as a practical MERN-style application with separate candidate and recruiter experiences. Candidates can discover and apply for jobs, while recruiters can create and manage job postings and review applications.
-
-## Features
+## ✨ Features
 
 ### Authentication
-
-- User registration and login
-- JWT authentication
+- Register and login with JWT
 - Protected routes
-- Role-aware candidate and recruiter workflows
+- Separate candidate and recruiter experiences
 
 ### Candidate
-
-- Browse available jobs
-- Search jobs
-- Filter jobs
-- View detailed job information
+- Browse, search and filter jobs
+- Job detail pages
 - Save jobs
 - Apply for jobs
-- Manage candidate profile
+- Profile management
 - Track applications
 
 ### Recruiter
-
-- Recruiter dashboard
-- Create job postings
-- Edit job postings
-- Delete job postings
+- Recruiter dashboard with charts
+- Create, edit and delete job postings
 - Manage job status
-- Review applications
-- View candidate information
-- Recruiter profile/settings workflows
+- Review applications and candidate details
+- Profile and settings
 
 ### General
-
 - Responsive UI
-- React Router navigation
-- Context-based application state
-- Axios REST API integration
-- Toast notifications
-- Animated UI elements
-- Dashboard data visualization
+- Toast notifications and animations
+- Context-based state management
 
-## Tech Stack
+## 🛠️ Tech Stack
 
-### Frontend
+| Layer | Technologies |
+| --- | --- |
+| Frontend | React 19, Vite, React Router, Tailwind CSS, Axios, Framer Motion, Recharts, React Toastify |
+| Backend | Node.js, Express.js, MongoDB, Mongoose, JWT, bcryptjs, CORS, dotenv |
 
-- React 19
-- JavaScript
-- Vite
-- React Router
-- Tailwind CSS
-- Axios
-- Framer Motion
-- Lucide React / React Icons
-- Recharts
-- React Toastify
+## 🏗️ Architecture
 
-### Backend
-
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- JWT
-- bcryptjs
-- CORS
-- dotenv
-- Validator
-
-## Architecture
-
-JobSphere is organized as a client/server application.
-
-```text
-                 JobSphere
-                     |
-          +----------+----------+
-          |                     |
-       Frontend               Backend
-          |                     |
-        React                Express
-          |                     |
-   +------+------+         +----+-----+
-   |             |         |          |
- Pages       Context      Routes   Controllers
-   |             |         |          |
- Components     |         |       Models
-   |             |         |          |
-   +------+------+         +----+-----+
-          |                     |
-        Axios  ------------> REST API
-                                |
-                                v
-                             MongoDB
+```
+React (pages, components, context)
+        │  Axios
+        ▼
+Express REST API (routes → controllers → models)
+        │
+        ▼
+     MongoDB
 ```
 
-### Frontend responsibilities
+## 📌 API Overview
 
-- Render candidate and recruiter interfaces
-- Manage navigation and protected routes
-- Maintain shared application state
-- Validate and submit user actions
-- Communicate with backend APIs through Axios
-
-### Backend responsibilities
-
-- Authenticate users
-- Authorize protected resources
-- Validate requests
-- Manage jobs and applications
-- Persist data through MongoDB/Mongoose
-- Return REST API responses
-
-## API
-
-The backend is located in the `server/` directory and runs as an Express API.
-
-### Authentication
-
-```text
-POST /api/auth/signup
-POST /api/auth/login
-POST /api/auth/logout
 ```
+POST   /api/auth/signup
+POST   /api/auth/login
+POST   /api/auth/logout
 
-### Jobs
-
-```text
 POST   /api/jobs
 GET    /api/jobs
 GET    /api/jobs/:id
 PATCH  /api/jobs/:id
 DELETE /api/jobs/:id
-```
 
-### Applications
-
-```text
 POST   /api/applications
 GET    /api/applications
 PATCH  /api/applications/:id
 DELETE /api/applications/:id
 ```
 
-> The exact route contract should be kept synchronized with the Express route files in `server/`. Do not publish undocumented endpoints or secrets.
+## 📁 Project Structure
 
-## Installation
+```
+jobsphere/
+├── src/
+│   ├── api/
+│   ├── components/
+│   ├── context/
+│   ├── pages/
+│   ├── routes/
+│   └── utils/
+├── server/
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   └── server.js
+└── package.json
+```
+
+## ⚙️ Getting Started
 
 ### Prerequisites
 
 - Node.js 18+
-- npm
-- MongoDB
+- MongoDB (local or Atlas)
 
-### 1. Clone the repository
+### Installation
 
 ```bash
 git clone https://github.com/zaidshaikh5301/jobsphere.git
 cd jobsphere
-```
 
-### 2. Install frontend dependencies
-
-```bash
+# frontend
 npm install
-```
 
-### 3. Install backend dependencies
-
-```bash
+# backend
 cd server
 npm install
 ```
 
-### 4. Configure environment variables
+### Environment variables
 
-Create a `.env` file inside `server/` with the database connection string, JWT configuration, port, and other server-side secrets required by the application.
-
-Example structure:
+Create `server/.env`:
 
 ```env
 PORT=5000
@@ -191,84 +123,31 @@ MONGODB_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
 ```
 
-Use your actual variable names from the server configuration and never commit the `.env` file.
-
-### 5. Start the backend
+### Run
 
 ```bash
+# backend (inside /server)
+npm run dev
+
+# frontend (from project root)
 npm run dev
 ```
 
-### 6. Start the frontend
+## 🔒 Security Notes
 
-From the project root:
+- Keep secrets in `.env` and never commit it
+- Use strict CORS and secure token settings in production
 
-```bash
-npm run dev
-```
+## 🔮 Roadmap
 
-## Screenshots
+- [ ] Resume upload
+- [ ] Email notifications
+- [ ] Interview scheduling
+- [ ] Admin moderation panel
+- [ ] Automated tests and CI/CD
 
-Add project screenshots to `docs/screenshots/` and showcase the most important candidate and recruiter workflows here.
-
-Recommended screenshots:
-
-- Home page
-- Jobs listing/search
-- Job details
-- Candidate dashboard
-- Apply job form
-- Recruiter dashboard
-- Manage jobs
-- Applications/candidate management
-- Profile/settings
-- Mobile responsive layout
-
-## Live Demo
-
-No verified production deployment URL is currently configured in the repository. Add separate verified frontend and backend deployment URLs after deployment.
-
-## Project Structure
-
-```text
-jobsphere/
-├── src/
-│   ├── api/
-│   ├── assets/
-│   ├── components/
-│   ├── context/
-│   ├── pages/
-│   ├── routes/
-│   └── utils/
-├── server/
-│   ├── models/
-│   ├── routes/
-│   ├── controllers/
-│   └── server.js
-├── package.json
-└── README.md
-```
-
-## Security Notes
-
-- Store JWT secrets and MongoDB credentials in environment variables.
-- Do not commit `.env` files.
-- Validate and sanitize user-controlled data.
-- Use secure production CORS and cookie/token settings before deployment.
-
-## Future Improvements
-
-- Email notifications
-- Resume upload and document management
-- Interview scheduling
-- Advanced recruiter analytics
-- Admin moderation panel
-- Saved-search alerts
-- Automated tests and CI/CD
-
-## Author
+## 👨‍💻 Author
 
 **Zaid Shaikh**
 
-- GitHub: https://github.com/zaidshaikh5301
-- LinkedIn: https://linkedin.com/in/zaid-shaikh-823961345
+[GitHub](https://github.com/zaidshaikh5301) · [LinkedIn](https://www.linkedin.com/in/zaid-shaikh-823961345/)
